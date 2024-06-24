@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.ui.theme
+package com.jfranco.catan.companion.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

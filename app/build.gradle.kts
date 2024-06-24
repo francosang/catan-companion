@@ -47,6 +47,14 @@ android {
 dependencies {
     implementation(libs.sqldelight.android.driver)
 
+    implementation(libs.voyager.navigator)
+    implementation(libs.voyager.koin)
+
+    // Koin for Android
+    // Koin for Kotlin apps
+    implementation("io.insert-koin:koin-core:3.5.6")
+    implementation("io.insert-koin:koin-androidx-compose:3.5.6")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
