@@ -11,12 +11,6 @@ interface DatabaseDriverFactory {
     fun createDriver(): SqlDriver
 }
 
-interface SessionsRepository {
-    fun all(): List<Session>
-    fun create()
-}
-
-
 val databaseModule = module {
     single<DatabaseDriverFactory> {
         AndroidDatabaseDriverFactory(

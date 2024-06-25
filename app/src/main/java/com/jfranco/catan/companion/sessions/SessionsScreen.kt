@@ -1,6 +1,7 @@
 package com.jfranco.catan.companion.sessions
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +17,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -23,11 +26,15 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import com.jfranco.catan.companion.Session
+import com.jfranco.catan.companion.state.Result
+import kotlinx.coroutines.launch
 
 @Composable
 fun Item(session: Session) {
@@ -75,15 +82,41 @@ fun AlertDialogExample(
     )
 }
 
+@Composable
+fun BoxScope.Sessions(state: SessionsScreenState, action: (Action) -> Unit) {
+    if (state.openDialog) AlertDialogExample(
+        onDismissRequest = { action(Action.Cancel) },
+        onConfirmation = { action(Action.Confirm) },
+        dialogTitle = "¿Crear nueva session?",
+        positiveText = "Si",
+        negativeText = "No"
+    )
+
+    if (state.loading) CircularProgressIndicator(
+        modifier = Modifier.align(Alignment.Center)
+    )
+    else LazyColumn {
+        items(state.sessions) { player ->
+            Item(player)
+        }
+    }
+
+}
+
 class SessionsScreen : Screen {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
         val screenModel = koinScreenModel<SessionsScreenModel>()
-        val state by screenModel.state.collectAsState()
+        val resultState by screenModel.state.collectAsState()
+
+        val snackbarHostState = remember { SnackbarHostState() }
 
         Scaffold(
+            snackbarHost = {
+                SnackbarHost(hostState = snackbarHostState)
+            },
             topBar = {
                 TopAppBar(
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -110,27 +143,26 @@ class SessionsScreen : Screen {
             },
         ) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding).fillMaxSize()) {
-                if (state.openDialog) AlertDialogExample(
-                    onDismissRequest = {
-                        screenModel.action(Action.Cancel)
-                    },
-                    onConfirmation = {
-                        screenModel.action(Action.Confirm)
-                    },
-                    dialogTitle = "¿Crear nueva session?",
-                    positiveText = "Si",
-                    negativeText = "No"
-                )
+                val state = resultState.let {
+                    when (it) {
+                        is Result.Err -> {
+                            val scope = rememberCoroutineScope()
 
+                            scope.launch {
+                                snackbarHostState.showSnackbar("Error: ${it.uuid}")
+                            }
 
-                if (state.loading) CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-                else LazyColumn {
-                    items(state.sessions) { player ->
-                        Item(player)
+                            it.previous
+                        }
+
+                        is Result.Ok -> it.value
                     }
                 }
+
+                Sessions(
+                    state = state,
+                    action = screenModel::action
+                )
             }
         }
     }

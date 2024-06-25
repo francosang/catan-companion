@@ -1,8 +1,8 @@
-package com.jfranco.catan.companion.sessions
+package com.jfranco.catan.companion.sessions.repo.impl
 
 import com.jfranco.catan.companion.Session
 import com.jfranco.catan.companion.SessionQueries
-import com.jfranco.catan.companion.data.SessionsRepository
+import com.jfranco.catan.companion.sessions.repo.SessionsRepository
 import java.util.Calendar
 
 class SessionsRepositoryImpl(
