@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.sessions.repo
+package com.jfranco.catan.companion.features.sessions.repo
 
 import com.jfranco.catan.companion.Session
 

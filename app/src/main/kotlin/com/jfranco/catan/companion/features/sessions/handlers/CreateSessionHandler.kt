@@ -1,9 +1,9 @@
-package com.jfranco.catan.companion.sessions.handlers
+package com.jfranco.catan.companion.features.sessions.handlers
 
-import com.jfranco.catan.companion.handler.ActionHandler
-import com.jfranco.catan.companion.sessions.repo.SessionsRepository
-import com.jfranco.catan.companion.sessions.Action
-import com.jfranco.catan.companion.sessions.SessionsScreenState
+import com.jfranco.catan.companion.common.handler.ActionHandler
+import com.jfranco.catan.companion.features.sessions.repo.SessionsRepository
+import com.jfranco.catan.companion.features.sessions.Action
+import com.jfranco.catan.companion.features.sessions.SessionsScreenState
 
 class CreateSessionHandler(
     private val sessionsRepository: SessionsRepository

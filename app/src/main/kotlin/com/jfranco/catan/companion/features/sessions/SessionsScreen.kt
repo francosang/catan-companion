@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.sessions
+package com.jfranco.catan.companion.features.sessions
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -33,7 +33,7 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import com.jfranco.catan.companion.Session
-import com.jfranco.catan.companion.state.Result
+import com.jfranco.catan.companion.common.state.Result
 import kotlinx.coroutines.launch
 
 @Composable

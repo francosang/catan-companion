@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.handler
+package com.jfranco.catan.companion.common.handler
 
 abstract class ActionHandler<A, S> {
 

@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.theme
+package com.jfranco.catan.companion.common.theme
 
 import androidx.compose.ui.graphics.Color
 

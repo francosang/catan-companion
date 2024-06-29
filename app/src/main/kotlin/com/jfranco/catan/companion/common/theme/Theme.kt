@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.theme
+package com.jfranco.catan.companion.common.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

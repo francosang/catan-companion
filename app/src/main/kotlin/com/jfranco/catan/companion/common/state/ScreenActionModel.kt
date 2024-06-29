@@ -1,4 +1,4 @@
-package com.jfranco.catan.companion.state
+package com.jfranco.catan.companion.common.state
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope

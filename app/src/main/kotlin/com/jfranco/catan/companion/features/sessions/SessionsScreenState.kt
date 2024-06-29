@@ -1,11 +1,11 @@
-package com.jfranco.catan.companion.sessions
+package com.jfranco.catan.companion.features.sessions
 
 import com.jfranco.catan.companion.Session
-import com.jfranco.catan.companion.sessions.handlers.CloseConfirmationAlertHandler
-import com.jfranco.catan.companion.sessions.handlers.CreateSessionHandler
-import com.jfranco.catan.companion.sessions.handlers.LoadSessionsHandler
-import com.jfranco.catan.companion.sessions.handlers.OpenConfirmationHandler
-import com.jfranco.catan.companion.state.ScreenActionModel
+import com.jfranco.catan.companion.features.sessions.handlers.CloseConfirmationAlertHandler
+import com.jfranco.catan.companion.features.sessions.handlers.CreateSessionHandler
+import com.jfranco.catan.companion.features.sessions.handlers.LoadSessionsHandler
+import com.jfranco.catan.companion.features.sessions.handlers.OpenConfirmationHandler
+import com.jfranco.catan.companion.common.state.ScreenActionModel
 
 data class SessionsScreenState(
     val loading: Boolean,

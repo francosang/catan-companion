@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import cafe.adriel.voyager.navigator.Navigator
-import com.jfranco.catan.companion.sessions.SessionsScreen
-import com.jfranco.catan.companion.theme.CatanCompanionTheme
+import com.jfranco.catan.companion.features.sessions.SessionsScreen
+import com.jfranco.catan.companion.common.theme.CatanCompanionTheme
 
 
 class MainActivity : ComponentActivity() {
