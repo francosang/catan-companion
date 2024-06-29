@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 fun Item(session: Session) {
     Card {
         ListItem(
-            headlineContent = { Text("Sesión ${session.id}") },
+            headlineContent = { Text("Session ${session.id}") },
             supportingContent = { Text(session.created) }
         )
     }
@@ -87,8 +87,8 @@ fun BoxScope.Sessions(state: SessionsScreenState, action: (Action) -> Unit) {
     if (state.openDialog) AlertDialogExample(
         onDismissRequest = { action(Action.Cancel) },
         onConfirmation = { action(Action.Confirm) },
-        dialogTitle = "¿Crear nueva session?",
-        positiveText = "Si",
+        dialogTitle = "Create new session?",
+        positiveText = "Yes",
         negativeText = "No"
     )
 
@@ -124,7 +124,7 @@ class SessionsScreen : Screen {
                         titleContentColor = MaterialTheme.colorScheme.primary,
                     ),
                     title = {
-                        Text("Sesiones")
+                        Text("Sessions")
                     },
                     actions = {
                         IconButton(
@@ -134,7 +134,7 @@ class SessionsScreen : Screen {
                             content = {
                                 Icon(
                                     imageVector = Icons.Filled.Add,
-                                    contentDescription = "Localized description"
+                                    contentDescription = "Create new session"
                                 )
                             }
                         )
@@ -145,6 +145,7 @@ class SessionsScreen : Screen {
             Box(modifier = Modifier.padding(innerPadding).fillMaxSize()) {
                 val state = resultState.let {
                     when (it) {
+                        // TODO: move the error handling to a reusable generic component
                         is Result.Err -> {
                             val scope = rememberCoroutineScope()
 
