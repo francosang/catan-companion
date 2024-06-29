@@ -4,4 +4,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.sqldelight) apply false
+
+    id("com.autonomousapps.dependency-analysis") version "1.32.0"
 }

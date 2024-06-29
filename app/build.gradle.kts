@@ -52,11 +52,9 @@ dependencies {
 
     // Koin for Android
     // Koin for Kotlin apps
-    implementation("io.insert-koin:koin-core:3.5.6")
-    implementation("io.insert-koin:koin-androidx-compose:3.5.6")
+    implementation(libs.koin.core)
+    implementation(libs.koin.androidx.compose)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -65,9 +63,7 @@ dependencies {
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
